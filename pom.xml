@@ -51,7 +51,12 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
-        
+
+        <dependency>
+        	<groupId>net.ijtools</groupId>
+        	<artifactId>ij_Geometry</artifactId>
+        	<version>0.1.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     
     <build>
