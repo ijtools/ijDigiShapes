@@ -50,12 +50,12 @@ public class DiscretizedEllipse2D implements PlugIn
         // generate geometric shape
         Ellipse2D elli = new Ellipse2D(centerX, centerY, semiAxis1, semiAxis2, orient);
         
-        // iteate over image pixels
+        // iterate over image pixels
         for (int y = 0; y < sizeY; y++)
         {
             for (int x = 0; x < sizeX; x++)
             {
-                if (elli.isInside(x, y))
+                if (elli.isInside(x + 0.5, y + 0.5))
                 {
                     array.set(x, y, 255);
                 }
@@ -66,7 +66,7 @@ public class DiscretizedEllipse2D implements PlugIn
         String newName = "Ellipse";
         if (count > 0)
         {
-            newName = String.format(Locale.ENGLISH, "ellipse-%02d", count);
+            newName = String.format(Locale.ENGLISH, "Ellipse-%02d", count);
         }
         count++;
 

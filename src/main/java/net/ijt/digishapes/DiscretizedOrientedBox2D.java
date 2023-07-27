@@ -55,7 +55,7 @@ public class DiscretizedOrientedBox2D implements PlugIn
         {
             for (int x = 0; x < sizeX; x++)
             {
-                if (box.contains(x, y))
+                if (box.contains(x + 0.5, y + 0.5))
                 {
                     array.set(x, y, 255);
                 }
