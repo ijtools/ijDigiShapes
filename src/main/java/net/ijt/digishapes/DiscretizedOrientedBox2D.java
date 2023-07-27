@@ -3,8 +3,6 @@
  */
 package net.ijt.digishapes;
 
-import java.util.Locale;
-
 import ij.ImagePlus;
 import ij.gui.GenericDialog;
 import ij.plugin.PlugIn;
@@ -63,16 +61,20 @@ public class DiscretizedOrientedBox2D implements PlugIn
         }
         
         // compute image name
-        String newName = "orientedBox";
-        if (count > 0)
-        {
-            newName = String.format(Locale.ENGLISH, "orientedBox-%02d", count);
-        }
-        count++;
+        String newName = createName("OrientedBox", count++);
 
         // create Image
         ImagePlus image = new ImagePlus(newName, array);
         image.show();
     }
-
+    
+    private String createName(String baseName, int count)
+    {
+        String name = baseName;
+        if (count > 0)
+        {
+            name += String.format("-%02d", count);
+        }
+        return name;
+    }
 }
