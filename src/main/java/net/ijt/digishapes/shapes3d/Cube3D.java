@@ -142,9 +142,9 @@ public class Cube3D
     public boolean isInside(Point3D point)
     {
         Point3D pt = globalToLocalTransform().transform(point);
-        if (Math.abs(pt.getX()) > 1) return false;
-        if (Math.abs(pt.getY()) > 1) return false;
-        if (Math.abs(pt.getZ()) > 1) return false;
+        if (Math.abs(pt.x()) > 1) return false;
+        if (Math.abs(pt.y()) > 1) return false;
+        if (Math.abs(pt.z()) > 1) return false;
         return true;
     }
 

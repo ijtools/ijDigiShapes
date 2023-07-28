@@ -51,10 +51,10 @@ public class Cylinder3D
     public boolean isInside(Point3D point)
     {
         Point3D pt = globalToLocalTransform().transform(point);
-        double r = Math.hypot(pt.getX(), pt.getY());
+        double r = Math.hypot(pt.x(), pt.y());
         if (r > 1) return false;
-        if (pt.getZ() > 1) return false;
-        if (pt.getZ() < 0) return false;
+        if (pt.z() > 1) return false;
+        if (pt.z() < 0) return false;
         return true;
     }
 
@@ -89,9 +89,9 @@ public class Cylinder3D
         
         // convert pair of points to spherical coordinates
         Vector3D vect = new Vector3D(p1, p2);
-        double hxy = Math.hypot(vect.getX(), vect.getY());
-        double theta = Math.PI/2 - Math.atan2(vect.getZ(), hxy);
-        double phi   = Math.atan2(vect.getY(), vect.getX());
+        double hxy = Math.hypot(vect.x(), vect.y());
+        double theta = Math.PI/2 - Math.atan2(vect.z(), hxy);
+        double phi   = Math.atan2(vect.y(), vect.x());
         AffineTransform3D rot1 = AffineTransform3D.createRotationOy(theta);
         AffineTransform3D rot2 = AffineTransform3D.createRotationOz(phi);
         
