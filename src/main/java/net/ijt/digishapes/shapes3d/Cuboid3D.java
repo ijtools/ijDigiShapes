@@ -3,7 +3,11 @@
  */
 package net.ijt.digishapes.shapes3d;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import net.ijt.geom3d.AffineTransform3D;
+import net.ijt.geom3d.Bounds3D;
 import net.ijt.geom3d.Point3D;
 import net.ijt.geom3d.Rotation3D;
 
@@ -202,4 +206,23 @@ public class Cuboid3D
         return localToGlobalTransform().inverse();
     }
 
+    public Bounds3D bounds()
+    {
+        return Bounds3D.of(vertices());
+    }
+    
+    private Collection<Point3D> vertices()
+    {
+        AffineTransform3D transfo = localToGlobalTransform();
+        ArrayList<Point3D> verts = new ArrayList<>(8);
+        verts.add(transfo.transform(new Point3D(-1, -1, -1)));
+        verts.add(transfo.transform(new Point3D(+1, -1, -1)));
+        verts.add(transfo.transform(new Point3D(-1, +1, -1)));
+        verts.add(transfo.transform(new Point3D(+1, +1, -1)));
+        verts.add(transfo.transform(new Point3D(-1, -1, +1)));
+        verts.add(transfo.transform(new Point3D(+1, -1, +1)));
+        verts.add(transfo.transform(new Point3D(-1, +1, +1)));
+        verts.add(transfo.transform(new Point3D(+1, +1, +1)));
+        return verts;
+    }
 }
