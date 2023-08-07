@@ -4,6 +4,7 @@
 package net.ijt.digishapes.shapes3d;
 
 import net.ijt.geom3d.AffineTransform3D;
+import net.ijt.geom3d.Bounds3D;
 import net.ijt.geom3d.Point3D;
 import net.ijt.geom3d.Rotation3D;
 
@@ -57,6 +58,17 @@ public class CenteredCylinder3D
         this.eulerAngleZ = eulerZ;
     }
     
+    public Point3D point1()
+    {
+        return localToGlobalTransform().transform(new Point3D(0, 0, -length/2));
+    }
+    
+    public Point3D point2()
+    {
+        return localToGlobalTransform().transform(new Point3D(0, 0, +length/2));
+    }
+    
+    
     /**
      * Returns the orientation of this cylinder, as a Rotation3D object. 
      * 
@@ -103,6 +115,26 @@ public class CenteredCylinder3D
     }
     
     /**
+     * Returns upper bounds by computing extremity points and adding a margin
+     * equal to the radius.
+     * 
+     * @return the approximated bounds of this cylinder.
+     */
+    public Bounds3D bounds()
+    {
+        Point3D p1 = point1();
+        Point3D p2 = point2();
+        double xmin = Math.min(p1.x(), p2.x()) - radius;
+        double xmax = Math.max(p1.x(), p2.x()) + radius;
+        double ymin = Math.min(p1.y(), p2.y()) - radius;
+        double ymax = Math.max(p1.y(), p2.y()) + radius;
+        double zmin = Math.min(p1.z(), p2.z()) - radius;
+        double zmax = Math.max(p1.z(), p2.z()) + radius;
+        return new Bounds3D(xmin, xmax, ymin, ymax, zmin, zmax);
+    }
+    
+    
+    /**
      * Creates the affine transform that will map a centered unit cube to this
      * cylinder instance.
      * 
@@ -115,9 +147,7 @@ public class CenteredCylinder3D
         AffineTransform3D sca = AffineTransform3D.createScaling(radius, radius, length);
         
         // rotation
-        
-        // convert pair of points to spherical coordinates
-        AffineTransform3D rot = AffineTransform3D.fromMatrix(orientation().affineMatrix());
+        AffineTransform3D rot = orientation().asTransform();
         
         // concatenate and translate
         AffineTransform3D tra = AffineTransform3D.createTranslation(center);

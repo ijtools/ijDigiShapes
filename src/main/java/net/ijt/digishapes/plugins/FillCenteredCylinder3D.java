@@ -11,6 +11,7 @@ import ij.ImageStack;
 import ij.gui.GenericDialog;
 import ij.plugin.PlugIn;
 import net.ijt.digishapes.shapes3d.CenteredCylinder3D;
+import net.ijt.geom3d.Bounds3D;
 import net.ijt.geom3d.Point3D;
 
 /**
@@ -71,21 +72,21 @@ public class FillCenteredCylinder3D implements PlugIn
         Point3D center = new Point3D(cx, cy, cz);
         CenteredCylinder3D cyl = new CenteredCylinder3D(center, length, radius, eulerAngleX, eulerAngleY, eulerAngleZ);
         
-//        // computation bounds
-//        Bounds3D bounds = cyl.bounds();
-//        int x0 = Math.max((int) Math.floor(bounds.minX()), 0);
-//        int x1 = Math.min((int) Math.ceil(bounds.maxX()), sizeX - 1);
-//        int y0 = Math.max((int) Math.floor(bounds.minY()), 0);
-//        int y1 = Math.min((int) Math.ceil(bounds.maxY()), sizeY - 1);
-//        int z0 = Math.max((int) Math.floor(bounds.minZ()), 0);
-//        int z1 = Math.min((int) Math.ceil(bounds.maxZ()), sizeZ - 1);
+        // computation bounds
+        Bounds3D bounds = cyl.bounds();
+        int x0 = Math.max((int) Math.floor(bounds.minX()), 0);
+        int x1 = Math.min((int) Math.ceil(bounds.maxX()), sizeX - 1);
+        int y0 = Math.max((int) Math.floor(bounds.minY()), 0);
+        int y1 = Math.min((int) Math.ceil(bounds.maxY()), sizeY - 1);
+        int z0 = Math.max((int) Math.floor(bounds.minZ()), 0);
+        int z1 = Math.min((int) Math.ceil(bounds.maxZ()), sizeZ - 1);
         
         // iterate over image voxels
-        for (int z = 0; z < sizeZ; z++)
+        for (int z = z0; z <= z1; z++)
         {
-            for (int y = 0; y < sizeY; y++)
+            for (int y = y0; y <= y1; y++)
             {
-                for (int x = 0; x < sizeX; x++)
+                for (int x = x0; x <= x1; x++)
                 {
                     if (cyl.isInside(x + 0.5, y + 0.5, z + 0.5))
                     {

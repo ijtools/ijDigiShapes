@@ -4,6 +4,7 @@
 package net.ijt.digishapes.shapes3d;
 
 import net.ijt.geom3d.AffineTransform3D;
+import net.ijt.geom3d.Bounds3D;
 import net.ijt.geom3d.Point3D;
 import net.ijt.geom3d.Vector3D;
 
@@ -72,6 +73,23 @@ public class Cylinder3D
     public boolean isInside(double x, double y, double z)
     {
         return isInside(new Point3D(x, y, z));
+    }
+    
+    /**
+     * Returns upper bounds by computing extremity points and adding a margin
+     * equal to the radius.
+     * 
+     * @return the approximated bounds of this cylinder.
+     */
+    public Bounds3D bounds()
+    {
+        double xmin = Math.min(p1.x(), p2.x()) - radius;
+        double xmax = Math.max(p1.x(), p2.x()) + radius;
+        double ymin = Math.min(p1.y(), p2.y()) - radius;
+        double ymax = Math.max(p1.y(), p2.y()) + radius;
+        double zmin = Math.min(p1.z(), p2.z()) - radius;
+        double zmax = Math.max(p1.z(), p2.z()) + radius;
+        return new Bounds3D(xmin, xmax, ymin, ymax, zmin, zmax);
     }
     
     /**
