@@ -10,18 +10,18 @@ import ij.ImagePlus;
 import ij.ImageStack;
 import ij.gui.GenericDialog;
 import ij.plugin.PlugIn;
-import net.ijt.digishapes.shapes3d.CenteredCylinder3D;
+import net.ijt.digishapes.shapes3d.Capsule3D;
 import net.ijt.geom3d.Bounds3D;
 import net.ijt.geom3d.Point3D;
 
 /**
- * Fills a 3D cylinder defined by center and three rotation angles on the
- * current 3D image.
+ * Fills a 3D capsule, defined as the union of a 3D cylinder with two spherical
+ * end-caps.
  * 
  * @author dlegland
  *
  */
-public class FillCenteredCylinder3D implements PlugIn
+public class FillCapsule3D implements PlugIn
 {
     @Override
     public void run(String arg)
@@ -40,7 +40,7 @@ public class FillCenteredCylinder3D implements PlugIn
         int sizeZ = array.getSize();
         
         // create the dialog
-        GenericDialog gd = new GenericDialog("Fill Centered Cylinder");
+        GenericDialog gd = new GenericDialog("Fill Capsule");
         gd.addNumericField("Center_X", Math.floor(sizeX / 2), 2);
         gd.addNumericField("Center_Y", Math.floor(sizeY / 2), 2);
         gd.addNumericField("Center_Z", Math.floor(sizeZ / 2), 2);
@@ -70,7 +70,7 @@ public class FillCenteredCylinder3D implements PlugIn
 
         // generate geometric shape
         Point3D center = new Point3D(cx, cy, cz);
-        CenteredCylinder3D cyl = new CenteredCylinder3D(center, length, radius, eulerAngleX, eulerAngleY, eulerAngleZ);
+        Capsule3D cyl = new Capsule3D(center, length, radius, eulerAngleX, eulerAngleY, eulerAngleZ);
         
         // computation bounds
         Bounds3D bounds = cyl.bounds();
@@ -106,7 +106,7 @@ public class FillCenteredCylinder3D implements PlugIn
         
         // show elapsed time
         String pattern = "%s: %.3f seconds";
-        String status = String.format(Locale.ENGLISH, pattern, "Fill Cylinder", timeInSecs);
+        String status = String.format(Locale.ENGLISH, pattern, "Fill Capsule", timeInSecs);
         IJ.showStatus(status);
     }
 }

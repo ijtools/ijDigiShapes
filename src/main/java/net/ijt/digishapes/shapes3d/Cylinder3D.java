@@ -27,12 +27,26 @@ public class Cylinder3D
      */
     final Point3D p2;
     
+    /**
+     * The radius of the cylinder.
+     */
     final double radius;
     
     
     // ===================================================================
     // Constructors
     
+    /**
+     * Creates a new cylinder shape based on the two extremity shapes and a
+     * radius.
+     * 
+     * @param p1
+     *            the first extremity point
+     * @param p2
+     *            the second extremity point
+     * @param radius
+     *            the radius
+     */
     public Cylinder3D(Point3D p1, Point3D p2, double radius)
     {
         this.p1 = p1;
@@ -41,13 +55,11 @@ public class Cylinder3D
     }
 
     /**
-     * Checks if the specified point is contained within the domain bounded by
-     * this boundary.
+     * Checks if the specified point is contained within this cylinder.
      * 
      * @param point
      *            the point to test
-     * @return true is the point is within the domain corresponding to this
-     *         boundary.
+     * @return true is the point is within this cylinder.
      */
     public boolean isInside(Point3D point)
     {
@@ -60,15 +72,13 @@ public class Cylinder3D
     }
 
     /**
-     * Checks if the specified point is contained within the domain bounded by
-     * this boundary.
+     * Checks if the specified point is contained within this cylinder.
      * 
      * @param x
      *            the x-coordinate of the point to test
      * @param y
      *            the y-coordinate of the point to test
-     * @return true is the point is within the domain corresponding to this
-     *         boundary.
+     * @return true is the point is within the cylinder.
      */
     public boolean isInside(double x, double y, double z)
     {
@@ -97,7 +107,7 @@ public class Cylinder3D
      * cylinder instance.
      * 
      * @return the affine transform that will map a centered unit cube to this
-     *cylindercuboid instance.
+     *         cylinder instance.
      */
     private AffineTransform3D localToGlobalTransform()
     {

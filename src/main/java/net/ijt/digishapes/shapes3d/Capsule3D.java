@@ -9,10 +9,15 @@ import net.ijt.geom3d.Point3D;
 import net.ijt.geom3d.Rotation3D;
 
 /**
+ * A 3D "capsule" shape, corresponding to a cylinder terminated by two spherical
+ * end caps at both extremities.
+ * 
+ * @see Cylinder3D
+ * @see CenteredCylinder3D
+ * 
  * @author dlegland
- *
  */
-public class CenteredCylinder3D
+public class Capsule3D
 {
     // ===================================================================
     // Class variables
@@ -22,6 +27,9 @@ public class CenteredCylinder3D
      */
     final Point3D center;
     
+    /**
+     * The length of the capsule, without including the two spherical caps.
+     */
     final double length;
     
     final double radius;
@@ -29,11 +37,13 @@ public class CenteredCylinder3D
     /**
      * The first rotation applied to the cylinder, around the X-axis, in degrees.
      */
-    final double eulerAngleX; 
+    final double eulerAngleX;
+    
     /**
      * The second rotation applied to the cylinder, around the Y-axis, in degrees.
      */
-    final double eulerAngleY; 
+    final double eulerAngleY;
+    
     /**
      * The third rotation applied to the cylinder, around the Z-axis, in degrees.
      */
@@ -43,12 +53,12 @@ public class CenteredCylinder3D
     // ===================================================================
     // Constructors
     
-    public CenteredCylinder3D(Point3D center, double length, double radius)
+    public Capsule3D(Point3D center, double length, double radius)
     {
         this(center, length, radius, 0, 0, 0);
     }
 
-    public CenteredCylinder3D(Point3D center, double length, double radius, double eulerX, double eulerY, double eulerZ)
+    public Capsule3D(Point3D center, double length, double radius, double eulerX, double eulerY, double eulerZ)
     {
         this.center = center;
         this.length = length;
@@ -59,8 +69,8 @@ public class CenteredCylinder3D
     }
     
     /**
-     * Returns the first reference point of this cylinder, corresponding to one
-     * of the extremities.
+     * Returns the first reference point, extremity of the center cylinder and
+     * center of one of the two spherical caps.
      * 
      * @return the first reference point.
      */
@@ -70,14 +80,14 @@ public class CenteredCylinder3D
     }
     
     /**
-     * Returns the second reference point of this cylinder, corresponding to one
-     * of the extremities.
+     * Returns the second reference point, extremity of the center cylinder and
+     * center of one of the two spherical caps.
      * 
      * @return the second reference point.
      */
     public Point3D point2()
     {
-        return localToGlobalTransform().transform(new Point3D(0, 0, +0.5));
+        return localToGlobalTransform().transform(new Point3D(0, 0, 0.5));
     }
     
     
@@ -93,31 +103,37 @@ public class CenteredCylinder3D
     
 
     /**
-     * Checks if the specified point is contained within this cylinder.
+     * Checks if the specified point is contained within the domain bounded by
+     * this boundary.
      * 
      * @param point
      *            the point to test
      * @return true is the point is within the domain corresponding to this
-     *         cylinder.
+     *         boundary.
      */
     public boolean isInside(Point3D point)
     {
+        // first check if point is within cylinder 
         Point3D pt = globalToLocalTransform().transform(point);
         double r = Math.hypot(pt.x(), pt.y());
         if (r > 1) return false;
-        if (Math.abs(pt.z()) > 0.5) return false;
-        return true;
+        if (pt.z() >= -0.5 && pt.z() <= 0.5) return true;
+        // if not, check within end caps 
+        if (point.distance(point1()) <= radius) return true;
+        if (point.distance(point2()) <= radius) return true;
+        return false;
     }
 
     /**
-     * Checks if the specified point is contained within this cylinder.
+     * Checks if the specified point is contained within the domain bounded by
+     * this boundary.
      * 
      * @param x
      *            the x-coordinate of the point to test
      * @param y
      *            the y-coordinate of the point to test
      * @return true is the point is within the domain corresponding to this
-     *         cylinder.
+     *         boundary.
      */
     public boolean isInside(double x, double y, double z)
     {
@@ -125,7 +141,7 @@ public class CenteredCylinder3D
     }
     
     /**
-     * Returns upper bounds by computing extremity points and adding a margin
+     * Returns bounds by computing extremity points and adding a margin
      * equal to the radius.
      * 
      * @return the approximated bounds of this cylinder.
@@ -143,13 +159,12 @@ public class CenteredCylinder3D
         return new Bounds3D(xmin, xmax, ymin, ymax, zmin, zmax);
     }
     
-    
     /**
      * Creates the affine transform that will map a centered unit cube to this
      * cylinder instance.
      * 
      * @return the affine transform that will map a centered unit cube to this
-     *         cylinder instance.
+     *cylindercuboid instance.
      */
     private AffineTransform3D localToGlobalTransform()
     {
