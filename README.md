@@ -5,6 +5,12 @@ common shapes: ellipses, boxes, ellipsoids...
 The generated images can be used to validate image processing algorithms,
 or for modelling purpose by combining several shapes together.
 
+Examples of 2D digitized shapes:
+![discrete 2D shapes (disk, ellipse, box and capsule)](doc/images/shapes2d.png)
+
+It is also possible to generate discretized version of 3D shapes (balls, ellipsoids, cylinders...):
+![discrete 3D shapes (ball, ellipsoid, cylinder, cuboid)](doc/images/shapes3d.png)
+
 ## Dependencies:
 * ImageJ
 * JUnit
