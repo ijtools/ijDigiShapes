@@ -36,10 +36,10 @@ public class FillCube3D implements PlugIn
         gd.addNumericField("Center_X", 100, 2);
         gd.addNumericField("Center_Y", 100, 2);
         gd.addNumericField("Center_Z", 100, 2);
-        gd.addNumericField("Side Length", 80, 2);
-        gd.addNumericField("Euler Angle X (degrees)", 0, 2);
-        gd.addNumericField("Euler Angle Y (degrees)", 0, 2);
-        gd.addNumericField("Euler Angle Z (degrees)", 0, 2);
+        gd.addNumericField("Side_Length", 80, 2);
+        gd.addNumericField("Euler_Angle_X (degrees)", 0, 2);
+        gd.addNumericField("Euler_Angle_Y (degrees)", 0, 2);
+        gd.addNumericField("Euler_Angle_Z (degrees)", 0, 2);
         gd.addNumericField("Fill Value", 255, 0);
 
         gd.showDialog();
