@@ -8,6 +8,7 @@ import ij.ImagePlus;
 import ij.gui.GenericDialog;
 import ij.plugin.PlugIn;
 import ij.process.ImageProcessor;
+import net.ijt.digishapes.util.ImageUtils;
 import net.ijt.geom2d.polygon.OrientedBox2D;
 
 /**
@@ -47,20 +48,9 @@ public class FillRotatedSquare2D implements PlugIn
         
         // retrieve image data
         ImageProcessor array = imagePlus.getProcessor();
-        int sizeX = array.getWidth();
-        int sizeY = array.getHeight();
         
         // iterate over image pixels
-        for (int y = 0; y < sizeY; y++)
-        {
-            for (int x = 0; x < sizeX; x++)
-            {
-                if (box.isInside(x + 0.5, y + 0.5))
-                {
-                    array.setf(x, y, fillValue);
-                }
-            }
-        }
+        ImageUtils.fill(array, (x,y) -> box.isInside(x + 0.5, y + 0.5), fillValue);
         
         // refresh display
         imagePlus.updateImage();
