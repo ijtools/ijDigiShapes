@@ -20,7 +20,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <artifactId>Digital_Shapes</artifactId>
     <!-- Good practice are to use semantic versioning, --> 
     <!-- and to remove the "-SNAPSHOT" suffix before releasing new version' --> 
-    <version>0.1.1-SNAPSHOT</version>
+    <version>0.1.1</version>
     <!-- The name of the project at it will appear in IDE or during compilation --> 
     <!-- (may be different from artifactID) --> 
     <name>Digital_Shapes</name>
@@ -55,7 +55,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <dependency>
         	<groupId>net.ijtools</groupId>
         	<artifactId>ij_Geometry</artifactId>
-        	<version>0.2.0</version>
+        	<version>0.3.0</version>
         </dependency>
     </dependencies>
     
