@@ -6,10 +6,10 @@ package net.ijt.digishapes.shapes3d;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import net.ijt.geom3d.AffineTransform3D;
-import net.ijt.geom3d.Bounds3D;
-import net.ijt.geom3d.Point3D;
-import net.ijt.geom3d.Rotation3D;
+import net.ijt.geometry.geom3d.AffineTransform3D;
+import net.ijt.geometry.geom3d.Bounds3D;
+import net.ijt.geometry.geom3d.Point3D;
+import net.ijt.geometry.geom3d.Rotation3D;
 
 /**
  * @author dlegland

@@ -11,8 +11,8 @@ import ij.ImageStack;
 import ij.gui.GenericDialog;
 import ij.plugin.PlugIn;
 import net.ijt.digishapes.shapes3d.Cylinder3D;
-import net.ijt.geom3d.Bounds3D;
-import net.ijt.geom3d.Point3D;
+import net.ijt.geometry.geom3d.Bounds3D;
+import net.ijt.geometry.geom3d.Point3D;
 
 /**
  * Fills a 3D cylinder defined by user parameters on the current 3D image.

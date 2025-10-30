@@ -9,7 +9,7 @@ import ij.gui.GenericDialog;
 import ij.plugin.PlugIn;
 import ij.process.ImageProcessor;
 import net.ijt.digishapes.util.ImageUtils;
-import net.ijt.geom2d.curve.Ellipse2D;
+import net.ijt.geometry.geom2d.curve.Ellipse2D;
 
 /**
  * Fills an ellipse defined by user parameters on the current image.

@@ -11,7 +11,7 @@ import ij.ImageStack;
 import ij.gui.GenericDialog;
 import ij.plugin.PlugIn;
 import net.ijt.digishapes.shapes3d.Cube3D;
-import net.ijt.geom3d.Bounds3D;
+import net.ijt.geometry.geom3d.Bounds3D;
 
 /**
  * Fills a Cube defined by user parameters on the current 3D image.

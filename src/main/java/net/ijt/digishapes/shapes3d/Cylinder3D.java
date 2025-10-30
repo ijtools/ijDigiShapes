@@ -3,10 +3,10 @@
  */
 package net.ijt.digishapes.shapes3d;
 
-import net.ijt.geom3d.AffineTransform3D;
-import net.ijt.geom3d.Bounds3D;
-import net.ijt.geom3d.Point3D;
-import net.ijt.geom3d.Vector3D;
+import net.ijt.geometry.geom3d.AffineTransform3D;
+import net.ijt.geometry.geom3d.Bounds3D;
+import net.ijt.geometry.geom3d.Point3D;
+import net.ijt.geometry.geom3d.Vector3D;
 
 /**
  * @author dlegland

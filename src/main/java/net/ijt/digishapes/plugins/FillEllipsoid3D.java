@@ -10,8 +10,8 @@ import ij.ImagePlus;
 import ij.ImageStack;
 import ij.gui.GenericDialog;
 import ij.plugin.PlugIn;
-import net.ijt.geom3d.Bounds3D;
-import net.ijt.geom3d.surface.Ellipsoid3D;
+import net.ijt.geometry.geom3d.Bounds3D;
+import net.ijt.geometry.geom3d.Ellipsoid3D;
 
 /**
  * Fills an ellipsoid defined by user parameters on the current 3D image.

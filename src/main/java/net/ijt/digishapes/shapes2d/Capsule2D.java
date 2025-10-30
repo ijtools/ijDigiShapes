@@ -5,9 +5,9 @@ package net.ijt.digishapes.shapes2d;
 
 import net.ijt.digishapes.shapes3d.CenteredCylinder3D;
 import net.ijt.digishapes.shapes3d.Cylinder3D;
-import net.ijt.geom2d.AffineTransform2D;
-import net.ijt.geom2d.Bounds2D;
-import net.ijt.geom2d.Point2D;
+import net.ijt.geometry.geom2d.AffineTransform2D;
+import net.ijt.geometry.geom2d.Bounds2D;
+import net.ijt.geometry.geom2d.Point2D;
 
 /**
  * A 2D "capsule" shape, corresponding to an oriented box terminated by two disk
